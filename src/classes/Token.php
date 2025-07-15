@@ -28,4 +28,18 @@ class Token extends Database
         $sql = "UPDATE token SET is_active = 0 WHERE token = ?";
         $this->pdo->prepare($sql)->execute([$token]);
     }
+
+
+    public function getUserIdByToken($token)
+    {
+        $sql = "SELECT user_id FROM token WHERE token = ? AND is_active = 1 LIMIT 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$token]);
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if ($row) {
+            return $row['user_id'];
+        }
+        return false;
+    }
 }

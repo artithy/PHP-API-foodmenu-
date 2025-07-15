@@ -10,4 +10,5 @@ abstract class Authbase extends Database
     use AuthUtils;
 
     abstract public function signup($user_name, $email, $password);
+    abstract public function login($email, $password);
 }

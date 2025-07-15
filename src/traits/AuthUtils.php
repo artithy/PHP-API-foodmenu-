@@ -18,4 +18,10 @@ trait AuthUtils
     {
         return bin2hex(random_bytes(32));
     }
+
+    function printResponse($response)
+    {
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
 }
