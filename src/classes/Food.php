@@ -39,4 +39,16 @@ class Food extends Database
             ];
         }
     }
+
+    public function getAllFoods()
+    {
+        $sql = "SELECT food.*, cuisine.name AS cuisine_name
+        FROM food 
+        JOIN cuisine ON food.cuisine_id = cuisine_id";
+
+        $stmt = $this->pdo->query($sql);
+        $foods = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $foods;
+    }
 }
